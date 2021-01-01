@@ -2,22 +2,56 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Scrtipt for linkedin badge -->
+    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js"></script>
     <link rel="stylesheet" href="styles.css">
 
     <div id="navbar-placeholder" class="active"></div>
 
     <script>
-        $(function() {
+        $(function () {
             $("#navbar-placeholder").load("navbar.html");
         });
     </script>
 
-    <!--<div class="topnav" id="myTopnav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html" class="active">Contact</a>        
-    </div> -->
-
-    <h1>This is my contact info</h1>
-
 </head>
+
+<body>
+
+    <h1 class="centering" style="margin-bottom: 0px;">Contact the developer</h1>
+    <h4 class="centering" style="margin-top: 5px;">Responce typically between 1-4 busiesdays</h4>
+
+    <p class="centering" style="max-width: 60%;">
+        If you wish to get in contact with me regarding any questions, business offers or just to say hi then please use one of the options listed below.</br>
+        I will do my best to reply as soon as possible but if you have not heard back from me within 4 business days then please send an other message to let me know.
+    </p>
+
+    <div id="flexbox">
+        <div id="box1">
+            <h2>Send A Message</h2>
+            <p>Fill out the form and press send and I will get back to you soon</p>
+            <form action="mailto:example@mail.com" id="contact-dev" method="post"
+                enctype="text/plain">
+                <label for="fullname">Full Name: </label> <span style="color: red;">*</span></br>
+                <input type="text" id="fullname" name="FullName" placeholder="Enter full name" required></br>
+
+                <label for="email">Email: </label> <span style="color: red;">*</span></br>
+                <input type="email" id="email" name="Email" placeholder="Email address" required></br>
+
+                <label for="phone">Phone number (optional): </label></br>
+                <input type="tel" id="phone" name="Tlf" placeholder="(+45) 12345678"> </br>
+
+                <label for="comment">Your message: <span style="color: red;">*</span></label></br>
+                <textarea id="textarea" name="Comment" form="contact-dev" placeholder="Enter your comment here"></textarea></br>
+
+                <input type="submit" value="Send" style="width: 80px; height: 20px; text-align: center;">
+            </form>
+        </div>
+
+        <div id="box2" class="LI-profile-badge" data-version="v1" data-size="large" data-locale="da_DK" data-type="vertical" data-theme="dark" data-vanity="alexander-rol">
+            <a class="LI-simple-link" href='https://dk.linkedin.com/in/alexander-rol?trk=profile-badge'>AlexanderRol</a>
+        </div>
+
+    </div>
+
+</body>
