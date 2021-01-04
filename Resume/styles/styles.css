@@ -11,7 +11,8 @@ body {
     min-height: 100%;
     position: relative;
     background-color: #D3D3D3;
-    padding-bottom: 3rem;;
+    padding-bottom: 3rem;
+    ;
 }
 
 .centering {
@@ -24,7 +25,7 @@ body {
     margin-right: auto;
     width: 50%;
     width: 20rem;
-  }
+}
 
 #textarea {
     min-width: 300px;
@@ -75,7 +76,7 @@ textarea {
     border-radius: 25em;
 }
 
-.homeflex  ul{
+.homeflex ul {
     display: flex;
     justify-content: center;
 }
@@ -93,7 +94,8 @@ textarea {
     background-color: blue;
     padding-right: 1rem;
     padding-left: 1rem;
-    margin-bottom: 5rem;;
+    margin-bottom: 5rem;
+    ;
 }
 
 .homeflex ul li div button {
@@ -103,7 +105,6 @@ textarea {
     height: 15%;
     position: relative;
     margin-top: 75%;
-    opacity: 60%;
     font-size: x-large;
 }
 
@@ -119,10 +120,11 @@ textarea {
     background-size: 100%;
 }
 
-#glow {
+#glow:hover {
     animation-name: flashing;
     animation-duration: 1s;
     animation-iteration-count: infinite;
+    opacity: 10%;
 }
 
 @keyframes flashing {
@@ -130,17 +132,21 @@ textarea {
         box-shadow: 0 0 10px -10px #3852cc;
         background-color: #2f49f7;
     }
-    25% {
+    30% {
         box-shadow: 0 0 10px 10px #1d2a68;
         background-color: #162bb5;
     }
-    50% {
+    40% {
         box-shadow: 0 0 10px -10px #3852cc;
         background-color: #2f49f7;
     }
-    75% {
+    60% {
         box-shadow: 0 0 10px 10px #1d2a68;
         background-color: #162bb5;
+    }
+    70% {
+        box-shadow: 0 0 10px -10px #3852cc;
+        background-color: #2f49f7;
     }
     100% {
         box-shadow: 0 0 10px -10px #3852cc;
@@ -150,9 +156,9 @@ textarea {
 
 @keyframes glow {
     from {
-      box-shadow: 0 0 10px -10px #2f49f7;
+        box-shadow: 0 0 10px -10px #2f49f7;
     }
     to {
-      box-shadow: 0 0 10px 10px #162bb5;
+        box-shadow: 0 0 10px 10px #162bb5;
     }
-  }
+}
