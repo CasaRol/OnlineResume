@@ -1,3 +1,7 @@
+html * {
+    font-family: 'Open Sans', sans-serif !important;
+}
+
 body {
     margin-top: 4rem;
     margin-left: 0;
@@ -13,6 +17,14 @@ body {
 .centering {
     text-align: center;
 }
+
+#profilepic {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    width: 20rem;
+  }
 
 #textarea {
     min-width: 300px;
@@ -62,3 +74,85 @@ textarea {
     text-align: center;
     border-radius: 25em;
 }
+
+.homeflex  ul{
+    display: flex;
+    justify-content: center;
+}
+
+.homeflex ul li {
+    display: flex;
+    text-align: center;
+    list-style: none;
+    flex: 0 0 25%;
+}
+
+.homeflex ul li div {
+    width: 20rem;
+    height: 25rem;
+    background-color: blue;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 5rem;;
+}
+
+.homeflex ul li div button {
+    text-align: center;
+    border-radius: 25rem;
+    width: 100%;
+    height: 15%;
+    position: relative;
+    margin-top: 75%;
+    opacity: 60%;
+    font-size: x-large;
+}
+
+.competencesimg {
+    background-image: url(../asstes/knowledge2.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.sparetimeimg {
+    background-image: url(../asstes/SpareTime2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+#glow {
+    animation-name: flashing;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes flashing {
+    0% {
+        box-shadow: 0 0 10px -10px #3852cc;
+        background-color: #2f49f7;
+    }
+    25% {
+        box-shadow: 0 0 10px 10px #1d2a68;
+        background-color: #162bb5;
+    }
+    50% {
+        box-shadow: 0 0 10px -10px #3852cc;
+        background-color: #2f49f7;
+    }
+    75% {
+        box-shadow: 0 0 10px 10px #1d2a68;
+        background-color: #162bb5;
+    }
+    100% {
+        box-shadow: 0 0 10px -10px #3852cc;
+        background-color: #2f49f7;
+    }
+}
+
+@keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px #2f49f7;
+    }
+    to {
+      box-shadow: 0 0 10px 10px #162bb5;
+    }
+  }
