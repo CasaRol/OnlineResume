@@ -10,7 +10,7 @@ body {
     padding: 0;
     min-height: 100%;
     position: relative;
-    background-color: #D3D3D3;
+    background-color: white;
     padding-bottom: 3rem;
     ;
 }
@@ -77,8 +77,11 @@ textarea {
 }
 
 .homeflex ul {
+    overflow: hidden;
     display: flex;
     justify-content: center;
+    overflow: auto;
+    text-align: justify;
 }
 
 .homeflex ul li {
@@ -91,11 +94,11 @@ textarea {
 .homeflex ul li div {
     width: 20rem;
     height: 25rem;
-    background-color: blue;
     padding-right: 1rem;
     padding-left: 1rem;
     margin-bottom: 5rem;
-    ;
+    box-shadow: 0.5rem 0.5rem rgba(3, 101, 140, 1);
+    border: 1px solid rgba(0, 0, 0, 1);
 }
 
 .homeflex ul li div button {
@@ -108,6 +111,11 @@ textarea {
     font-size: x-large;
 }
 
+.homeflex ul li div h1 {
+    color: white;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
 .competencesimg {
     background-image: url(../asstes/knowledge2.png);
     background-repeat: no-repeat;
@@ -116,6 +124,12 @@ textarea {
 
 .sparetimeimg {
     background-image: url(../asstes/SpareTime2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.aboutwebsite {
+    background-image: url(../asstes//thisWebsite3.png);
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -135,6 +149,9 @@ textarea {
     30% {
         box-shadow: 0 0 10px 10px #1d2a68;
         background-color: #162bb5;
+        opacity: 0.9;
+        border: 1px solid rgba(255, 255, 255, .3);
+        color: white
     }
     40% {
         box-shadow: 0 0 10px -10px #3852cc;
@@ -143,6 +160,8 @@ textarea {
     60% {
         box-shadow: 0 0 10px 10px #1d2a68;
         background-color: #162bb5;
+        opacity: 0.9;
+        border: 2px solid rgba(255, 255, 255, .5);
     }
     70% {
         box-shadow: 0 0 10px -10px #3852cc;
@@ -152,4 +171,16 @@ textarea {
         box-shadow: 0 0 10px -10px #3852cc;
         background-color: #2f49f7;
     }
+}
+
+.button:hover {
+    text-decoration: none;
+    background: white;
+    padding: 15px 40px;
+    border-radius: 25rem;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 1);
+}
+
+button:focus {
+    outline: 0;
 }
