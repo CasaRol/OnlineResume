@@ -153,12 +153,3 @@ textarea {
         background-color: #2f49f7;
     }
 }
-
-@keyframes glow {
-    from {
-        box-shadow: 0 0 10px -10px #2f49f7;
-    }
-    to {
-        box-shadow: 0 0 10px 10px #162bb5;
-    }
-}
