@@ -27,4 +27,4 @@ server.get('/ping', (req, res) => {
 
 let port = 8080
 server.listen(port);
-console.log('server is litening on port ' + port);
+console.log('server is listening on port ' + port);
