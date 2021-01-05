@@ -1,20 +1,16 @@
-for REPO in `ls "$REPOSITORIES/"`
-do
-  if [ -d "$REPOSITORIES/$REPO" ]
-  then
-    echo "Updating $REPOSITORIES/$REPO at `date`"
-    if [ -d "$REPOSITORIES/$REPO/.git" ]
-    then
-      cd "$REPOSITORIES/$REPO"
-      git status
-      echo "Fetching"
-      git fetch
-      echo "Pulling"
-      git pull
-    else
-      echo "Skipping because it doesn't look like it has a .git folder."
-    fi
-    echo "Done at `date`"
-    echo
-  fi
-done
+#!/bin/sh
+
+echo Finding directory...
+echo Checking for updates...
+
+cd ./
+
+git pull
+
+echo Repo up to date.
+
+cd ./Resume/
+
+echo Starting server...
+
+node server.js
