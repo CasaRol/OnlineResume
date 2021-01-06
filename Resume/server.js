@@ -57,9 +57,10 @@ async function getAccessToken(code) {
 async function getGithubUser(access_token) {
     const req = await fetch('https://api.github.com/user', {
         headers: {
-            Authorization: 'bearer ${access_token}'
+            Authorization: 'bearer' + access_token
         }
     })
+    console.log("accesstoken = " + access_token)
     const data = await req.json()
     return data;
 }
