@@ -50,7 +50,7 @@ async function getAccessToken(code) {
     })
     const data = await res.text();
     const params = new URLSearchParams(data);
-    params.get('access_token');
+    return params.get('access_token');
 }
 
 server.get("/login/github/callback", async(req, res) => {
