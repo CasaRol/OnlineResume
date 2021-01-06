@@ -54,10 +54,21 @@ async function getAccessToken(code) {
     return params.get('access_token');
 }
 
+async function getGithubUser(access_token) {
+    const req = await fetch('https://api.github.com/user', {
+        headers: {
+            Authorization: 'bearer' + access_token
+        }
+    })
+    const data = await req.jons()
+    return data;
+}
+
 server.get("/login/github/callback", async(req, res) => {
     const code = req.query.code
     const token = await getAccessToken(code)
-    res.json({ token });
+    const githubData = await getGithubUser(token)
+    res.json(githubData)
 });
 
 let port = 8080
