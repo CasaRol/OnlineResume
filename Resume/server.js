@@ -67,9 +67,8 @@ async function getGithubUser(access_token) {
 server.get("/login/github/callback", async(req, res) => {
     const code = req.query.code
     const token = await getAccessToken(code)
-    console.log(token);
     const githubData = await getGithubUser(token)
-    res.json(githubData)
+    res.json("ugabuga" + githubData)
 });
 
 let port = 8080
