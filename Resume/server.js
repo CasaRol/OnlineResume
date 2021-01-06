@@ -4,6 +4,7 @@ const fs = require('fs');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { env } = require('process');
+const { URLSearchParams } = require('url');
 const server = express();
 
 server.use(bodyParser.urlencoded({ extended: false }));
@@ -31,10 +32,31 @@ const client_id = process.env.GITHUB_CLIENT_ID;
 const client_secret = process.env.GITHUB_CLIENT_SECRET;
 
 server.get("/login/github", (req, res) => {
-    const url = 'https://github.com/login/oauth/authorize?client_id=${client_id}&redirect_uri=http://casarol.site/login/github/callback';
+    const url = 'https://github.com/login/oauth/authorize?client_id=+' + client_id + '&redirect_uri=http://casarol.site/login/github/callback';
     res.redirect(url);
 });
-server.get("/login/github/callback", (req, res) => {});
+
+async function getAccessToken(code) {
+    const res = await fetch('https://github.com/login/oauth/access_token', {
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({
+            client_id,
+            cleint_secret,
+            code
+        })
+    })
+    const data = await res.text();
+    const params = new URLSearchParams(data);
+    params.get('access_token');
+}
+
+server.get("/login/github/callback", async(req, res) => {
+    const code = req.query.code
+    const token = await getAccessToken(code)
+    res.json({ token });
+});
 
 let port = 8080
 server.listen(port);
