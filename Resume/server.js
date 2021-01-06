@@ -1,5 +1,6 @@
 const express = require('express');
 require('dotenv').config({ path: __dirname + '/.env' });
+import fetch from 'node-fetch';
 const fs = require('fs');
 const cors = require('cors');
 const bodyParser = require('body-parser');
