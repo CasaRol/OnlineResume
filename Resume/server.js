@@ -32,12 +32,13 @@ const client_id = process.env.GITHUB_CLIENT_ID;
 const client_secret = process.env.GITHUB_CLIENT_SECRET;
 
 server.get("/login/github", (req, res) => {
-    const url = 'https://github.com/login/oauth/authorize?client_id=+' + client_id + '&redirect_uri=http://casarol.site/login/github/callback';
+    const url = 'https://github.com/login/oauth/authorize?client_id=+' + client_ '&redirect_uri=http://casarol.site/login/github/callback';
     res.redirect(url);
 });
 
 async function getAccessToken(code) {
     const res = await fetch('https://github.com/login/oauth/access_token', {
+        method: 'POST',
         headers: {
             "content-type": "application/json"
         },
