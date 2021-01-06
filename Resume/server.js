@@ -69,7 +69,11 @@ server.get("/login/github/callback", async(req, res) => {
     const code = req.query.code;
     const token = await getAccessToken(code);
     const githubData = await getGithubUser(token);
-    res.json(githubData);
+    if (githubData.id === '32219634') {
+        res.send("Authorized access");
+    } else {
+        res.send('Unauthorized access, please leave!')
+    }
 });
 
 let port = 8080
