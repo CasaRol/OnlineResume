@@ -45,7 +45,7 @@ async function getAccessToken(code) {
         },
         body: JSON.stringify({
             client_id,
-            cleint_secret,
+            client_secret,
             code
         })
     })
