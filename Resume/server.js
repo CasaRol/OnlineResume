@@ -60,7 +60,7 @@ async function getGithubUser(access_token) {
             Authorization: 'bearer' + access_token
         }
     })
-    const data = await req.jons()
+    const data = await req.json()
     return data;
 }
 
