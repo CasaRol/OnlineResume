@@ -67,6 +67,7 @@ async function getGithubUser(access_token) {
 
 server.get("/login/github/callback", async(req, res) => {
     const code = req.query.code;
+    console.log("Access_token= " + params.get('access_token'));
     const token = await getAccessToken(code);
     const githubData = await getGithubUser(token);
     res.json(githubData);
