@@ -51,6 +51,7 @@ async function getAccessToken(code) {
     })
     const data = await res.text();
     const params = new URLSearchParams(data);
+    console.log("Access_token= " + params.get('access_token'));
     return params.get('access_token');
 }
 
