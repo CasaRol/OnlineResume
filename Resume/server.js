@@ -51,7 +51,6 @@ async function getAccessToken(code) {
     })
     const data = await res.text();
     const params = new URLSearchParams(data);
-    console.log("Access_token= " + params.get('access_token'));
     return params.get('access_token');
 }
 
@@ -61,13 +60,13 @@ async function getGithubUser(access_token) {
             Authorization: 'bearer ${access_token}'
         }
     })
+    console.log("Access_token ${access_token}");
     const data = await req.json()
     return data;
 }
 
 server.get("/login/github/callback", async(req, res) => {
     const code = req.query.code;
-    console.log("Access_token= " + params.get('access_token'));
     const token = await getAccessToken(code);
     const githubData = await getGithubUser(token);
     res.json(githubData);
