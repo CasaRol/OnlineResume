@@ -96,6 +96,8 @@ server.get("/login/index", async(req, res) => {
         console.log("session id= " + req.session.githubId);
         console.log("my id= " + "32219634")
         res.sendFile("login/index.html", { root: __dirname });
+    } else if (req.session.githubId == null) {
+        res.redirect("log/github");
     } else {
         res.sendFile("error_codes/restrictedAccess.html", { root: __dirname });
     }
