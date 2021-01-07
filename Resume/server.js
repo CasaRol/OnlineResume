@@ -21,7 +21,7 @@ server.use(express.static(__dirname));
 server.route("/").get((req, res) => {
 
     console.log("testing");
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile("index.html", { root: __dirname });
 
 });
 
@@ -95,7 +95,7 @@ server.get("/login/index", async(req, res) => {
     if (req.session && req.session.githubId === 32219634) {
         console.log("session id= " + req.session.githubId);
         console.log("my id= " + "32219634")
-        res.sendFile(path.resolve("/login/index.html"));
+        res.sendFile(path.resolve("login/index.html", { root: __dirname }));
     } else {
         res.redirect("/login/github");
     }
