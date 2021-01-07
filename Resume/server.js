@@ -50,8 +50,8 @@ server.get("/login/github", (req, res) => {
     res.redirect(url);
 });
 
-async function getAccessToken(code) {
-    const res = await fetch('https://github.com/login/oauth/access_token', {
+async function getAccessToken({ code, client_id, client_secret }) {
+    const request = await fetch('https://github.com/login/oauth/access_token', {
         method: 'POST',
         headers: {
             "content-type": "application/json"
@@ -62,8 +62,8 @@ async function getAccessToken(code) {
             code
         })
     })
-    const data = await res.text();
-    const params = new URLSearchParams(data);
+    const data = await request.text();
+    const params = new URLSearchParams(text);
     return params.get('access_token');
 }
 
@@ -73,18 +73,16 @@ async function getGithubUser(access_token) {
             "Authorization": "token " + access_token
         }
     })
-    console.log("Access_token ${access_token}");
-    const data = await req.json()
-    return data;
+    return await req.json()
 }
 
 server.get("/login/github/callback", async(req, res) => {
     const code = req.query.code;
-    const token = await getAccessToken(code);
-    const githubData = await getGithubUser(token);
-    if (githubData) {
-        req.session.githubId = githubData.id
-        req.session.token = token
+    const access_token = await getAccessToken({ code, client_id, client_secret });
+    const user = await getGithubUser(access_token);
+    if (user) {
+        req.session.access_token = access_token;
+        req.session.githubId = user.id;
         res.redirect("/login/index.html");
     } else {
         console.log("Error - Something went wrong in callback")
@@ -92,17 +90,19 @@ server.get("/login/github/callback", async(req, res) => {
     }
 });
 
-server.get("/login/index.html", (req, res) => {
-    if (req.session.githubId === 32219634) {
-        res.sendFile(JSON.stringify(req.session));
+server.get("/login/index.html", async(req, res) => {
+    if (req.session && req.session.githubId === 32219634) {
+        res.sendFile("/login/index.html");
     } else {
-        res.redirect("./error_codes/restrictedAccess.html");
+        res.redirect("/login/github");
     }
 });
 
 server.get("/logout", (req, res) => {
-    req.session == null;
-    res.redirect("/");
+    if (req.session) {
+        req.session == null;
+        res.redirect("/");
+    }
 })
 
 //Login methods and calls - End
