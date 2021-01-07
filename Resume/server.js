@@ -96,7 +96,7 @@ server.get("/login/index.html", (req, res) => {
     if (req.session.githubId === 32219634) {
         res.sendFile("./login/index.html");
     } else {
-        res.sendFile("./error_codes/restrictedAccess.html");
+        res.redirect("./error_codes/restrictedAccess.html");
     }
 });
 
