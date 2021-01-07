@@ -3,6 +3,7 @@ const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
 const cookieSession = require('cookie-session');
 const fetch = require('node-fetch');
 const fs = require('fs');
+const path = require('path')
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { env } = require('process');
@@ -94,7 +95,7 @@ server.get("/login/index", async(req, res) => {
     if (req.session && req.session.githubId === 32219634) {
         console.log("session id= " + req.session.githubId);
         console.log("my id= " + "32219634")
-        res.sendFile("./login/index.html");
+        res.sendFile(path.resolve("/login/index.html"));
     } else {
         res.redirect("/login/github");
     }
