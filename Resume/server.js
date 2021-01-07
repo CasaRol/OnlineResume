@@ -20,7 +20,7 @@ server.use(express.static(__dirname));
 server.route("/").get((req, res) => {
 
     console.log("testing");
-    res.sendFile('./Resume/index.html');
+    res.sendFile(__dirname + '/Resume/index.html');
 
 });
 
@@ -94,9 +94,9 @@ server.get("/login/index", async(req, res) => {
     if (req.session && req.session.githubId === 32219634) {
         console.log("session id= " + req.session.githubId);
         console.log("my id= " + "32219634")
-        res.sendFile(__dirname + "./login/index.html");
+        res.sendFile(__dirname + "/login/index.html");
     } else {
-        res.redirect(__dirname + ".Resume/login/github");
+        res.redirect(__dirname + "/Resume/login/github");
     }
 });
 
