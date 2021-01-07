@@ -97,7 +97,7 @@ server.get("/login/index", async(req, res) => {
         console.log("my id= " + "32219634")
         res.sendFile("login/index.html", { root: __dirname });
     } else {
-        res.redirect("/login/github");
+        res.sendFile("error_codes/restrictedAccess.html", { root: __dirname });
     }
 });
 
