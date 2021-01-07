@@ -96,7 +96,7 @@ server.get("/login/index", async(req, res) => {
         console.log("my id= " + "32219634")
         res.sendFile("./login/index.html");
     } else {
-        res.redirect(".Resume/login/github");
+        res.redirect(__dirname + ".Resume/login/github");
     }
 });
 
