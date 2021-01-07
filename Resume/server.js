@@ -20,7 +20,7 @@ server.use(express.static(__dirname));
 server.route("/").get((req, res) => {
 
     console.log("testing");
-    res.sendFile(__dirname + '/Resume/index.html');
+    res.sendFile(__dirname + '/index.html');
 
 });
 
@@ -96,7 +96,7 @@ server.get("/login/index", async(req, res) => {
         console.log("my id= " + "32219634")
         res.sendFile(__dirname + "/login/index.html");
     } else {
-        res.redirect(__dirname + "/Resume/login/github");
+        res.redirect(__dirname + "/login/github");
     }
 });
 
