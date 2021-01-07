@@ -83,7 +83,7 @@ server.get("/login/github/callback", async(req, res) => {
     if (user) {
         req.session.access_token = access_token;
         req.session.githubId = user.id;
-        res.redirect("/login/index.html");
+        res.redirect(__dirname + "/login/index.html");
     } else {
         console.log("Error - Something went wrong in callback")
         req.send("Error happend")
