@@ -1,0 +1,192 @@
+html * {
+    font-family: 'Open Sans', sans-serif !important;
+    
+}
+
+body {
+    margin-top: 4rem;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    padding: 0;
+    min-height: 100%;
+    position: relative;
+    background-color: white;
+    padding-bottom: 3rem;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centering {
+    text-align: center;
+}
+
+#profilepic {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    width: 20rem;
+}
+
+#textarea {
+    min-width: 300px;
+    min-height: 100px;
+}
+
+#flexbox {
+    height: 100%;
+    padding: 2em;
+    display: flex;
+    align-items: flex-start;
+    min-width: 800px;
+}
+
+#box1 {
+    margin-left: 20%;
+    width: 50%;
+    height: none;
+    padding-right: 1em;
+}
+
+#box2 {
+    margin-right: 20%;
+    margin-top: 2em;
+    padding-left: 1em;
+}
+
+input {
+    border-color: #048fc5;
+    border-width: thin;
+    margin-bottom: 10px;
+    margin-top: 0.5em;
+    width: 23em;
+}
+
+textarea {
+    border-color: #048fc5;
+    border-width: thin;
+    columns: 50;
+    min-width: 23em;
+    max-width: 40em;
+}
+
+.btnform {
+    width: 5em;
+    height: 1.5em;
+    text-align: center;
+    border-radius: 25em;
+}
+
+.homeflex ul {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    text-align: justify;
+}
+
+.homeflex ul li {
+    display: flex;
+    text-align: center;
+    list-style: none;
+    flex: 0 0 25%;
+}
+
+.homeflex ul li div {
+    width: 20rem;
+    height: 25rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 5rem;
+    box-shadow: 0.5rem 0.5rem rgba(3, 101, 140, 1);
+    border: 1px solid rgba(0, 0, 0, 1);
+}
+
+.homeflex ul li div button {
+    text-align: center;
+    border-radius: 25rem;
+    width: 100%;
+    height: 15%;
+    position: relative;
+    margin-top: 75%;
+    font-size: x-large;
+}
+
+.homeflex ul li div h1 {
+    color: white;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+.competencesimg {
+    background-image: url(../asstes/knowledge2.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.sparetimeimg {
+    background-image: url(../asstes/SpareTime2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.aboutwebsite {
+    background-image: url(../asstes//thisWebsite3.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+#glow:hover {
+    animation-name: flashing;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    opacity: 10%;
+}
+
+@keyframes flashing {
+    0% {
+        box-shadow: 0 0 10px -10px #3852cc;
+        background-color: #2f49f7;
+    }
+    30% {
+        box-shadow: 0 0 10px 10px #1d2a68;
+        background-color: #162bb5;
+        opacity: 0.9;
+        border: 1px solid rgba(255, 255, 255, .3);
+        color: white
+    }
+    40% {
+        box-shadow: 0 0 10px -10px #3852cc;
+        background-color: #2f49f7;
+    }
+    60% {
+        box-shadow: 0 0 10px 10px #1d2a68;
+        background-color: #162bb5;
+        opacity: 0.9;
+        border: 2px solid rgba(255, 255, 255, .5);
+    }
+    70% {
+        box-shadow: 0 0 10px -10px #3852cc;
+        background-color: #2f49f7;
+    }
+    100% {
+        box-shadow: 0 0 10px -10px #3852cc;
+        background-color: #2f49f7;
+    }
+}
+
+.button:hover {
+    text-decoration: none;
+    background: white;
+    padding: 15px 40px;
+    border-radius: 25rem;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 1);
+}
+
+button:focus {
+    outline: 0;
+}
