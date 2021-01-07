@@ -20,7 +20,7 @@ server.use(express.static(__dirname));
 server.route("/").get((req, res) => {
 
     console.log("testing");
-    res.sendFile('Resume/index.html');
+    res.sendFile('./Resume/index.html');
 
 });
 
