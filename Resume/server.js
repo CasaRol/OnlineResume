@@ -83,7 +83,7 @@ server.get("/login/github/callback", async(req, res) => {
     if (user) {
         req.session.access_token = access_token;
         req.session.githubId = user.id;
-        res.redirect(__dirname + "/login/index.html");
+        res.redirect("/login/index");
     } else {
         console.log("Error - Something went wrong in callback")
         req.send("Error happend")
@@ -94,7 +94,7 @@ server.get("/login/index", async(req, res) => {
     if (req.session && req.session.githubId === 32219634) {
         console.log("session id= " + req.session.githubId);
         console.log("my id= " + "32219634")
-        res.sendFile(__dirname + "/login/index.html");
+        res.sendFile("./login/index.html");
     } else {
         res.redirect("/login/github");
     }
