@@ -94,7 +94,7 @@ server.get("/login/index", async(req, res) => {
     if (req.session && req.session.githubId === 32219634) {
         console.log("session id= " + req.session.githubId);
         console.log("my id= " + "32219634")
-        res.sendFile("/login/index.html");
+        res.sendFile(".\login\index.html");
     } else {
         res.redirect("/login/github");
     }
