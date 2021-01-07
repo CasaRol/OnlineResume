@@ -20,7 +20,7 @@ server.use(express.static(__dirname));
 server.route("/").get((req, res) => {
 
     console.log("testing");
-    res.sendFile(__dirname + './Resume/index.html');
+    res.sendFile('Resume/index.html');
 
 });
 
@@ -62,7 +62,7 @@ async function getAccessToken({ code, client_id, client_secret }) {
             code
         })
     })
-    const data = await request.text();
+    const text = await request.text();
     const params = new URLSearchParams(text);
     return params.get('access_token');
 }
@@ -90,7 +90,7 @@ server.get("/login/github/callback", async(req, res) => {
     }
 });
 
-server.get("/login/index.html", async(req, res) => {
+server.get("/login/index", async(req, res) => {
     if (req.session && req.session.githubId === 32219634) {
         console.log("session id= " + req.session.githubId);
         console.log("my id= " + "32219634")
