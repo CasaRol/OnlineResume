@@ -105,6 +105,16 @@ server.get("/login/index", async(req, res) => {
     }
 });
 
+server.get("/login/filesharing", async(req, res) => {
+    if (req.session && req.session.githubId === 32219634) {
+        res.sendFile("login/filesharing.html", { root: __dirname });
+    } else if (req.session.githubId == null) {
+        res.redirect("github");
+    } else {
+        res.sendFile("error_codes/restrictedAccess.html", { root: __dirname });
+    }
+});
+
 server.get("/logout", (req, res) => {
     if (req.session) {
         req.session == null;
