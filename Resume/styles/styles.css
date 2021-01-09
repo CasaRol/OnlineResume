@@ -189,3 +189,38 @@ textarea {
 button:focus {
     outline: 0;
 }
+
+.flex-about {
+    display: flex;
+    overflow: auto;
+    text-align: center;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+}
+
+.desc-left {
+    display: inline;
+    text-align: left;
+    flex-basis: 66.6%;
+    padding-right: 2rem;
+    overflow: hide;
+}
+
+.desc-right {
+    display: inline;
+    text-align: left;
+    flex-basis: 66.6%;
+    padding-left: 15rem;
+    overflow: hide;
+}
+
+.img {
+    display: inline;
+    flex-basis: 33.3%;
+}
+
+.about-text {
+    font-size: 110%;
+    line-height: 2rem;
+}
