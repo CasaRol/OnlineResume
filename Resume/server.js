@@ -91,6 +91,10 @@ server.get("/login/github/callback", async(req, res) => {
     }
 });
 
+server.route("login/index.html", (req, res) => {
+    res.redirect("/login/index");
+});
+
 server.get("/login/index", async(req, res) => {
     if (req.session && req.session.githubId === 32219634) {
         res.sendFile("login/index.html", { root: __dirname });
