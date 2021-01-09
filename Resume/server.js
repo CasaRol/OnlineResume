@@ -35,7 +35,7 @@ server.get("/ping", (req, res) => {
 
 //Ping for server check - End
 
-//Login methods and calls - start (https://www.youtube.com/watch?v=EzQuFxRlUos&ab_channel=KevinSimper)
+//Login methods and calls - start ( source: https://www.youtube.com/watch?v=EzQuFxRlUos&ab_channel=KevinSimper)
 const client_id = process.env.GITHUB_CLIENT_ID;
 const client_secret = process.env.GITHUB_CLIENT_SECRET;
 const cookie_secret = process.env.COOKIE_SECRET
@@ -91,8 +91,8 @@ server.get("/login/github/callback", async(req, res) => {
     }
 });
 
-server.route("login/index.html", (req, res) => {
-    res.redirect("/login/index");
+server.get("login/index.html", (req, res) => {
+    return res.redirect("/login/index");
 });
 
 server.get("/login/index", async(req, res) => {
