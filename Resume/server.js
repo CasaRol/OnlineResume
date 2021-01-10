@@ -30,7 +30,17 @@ server.get("/contact", (req, res) => {
     res.sendFile("contact.html", { root: __dirname });
 });
 
+server.get("/login/index", (req, res) => {
+    res.sendFile("/login/index.html", {root: __dirname});
+});
 
+server.get("/login/filesharing", (req, res) => {
+    res.sendFile("/login/filesharing.html", {root: __dirname});
+});
+
+server.get("/login/movieandseries", (req, res) => {
+    res.sendFile("/login/movieandseries.html", {root: __dirname});
+});
 
 //Ping for server check - Start
 
