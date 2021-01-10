@@ -18,12 +18,19 @@ server.options('*', cors());
 server.use(express.static(__dirname));
 
 //Return index file (HTML)
-server.route("/").get((req, res) => {
-
-    console.log("testing");
+server.get("/index", (req, res) => {
     res.sendFile("index.html", { root: __dirname });
-
 });
+
+server.get("/about", (req, res) => {
+    res.sendFile("about.html", { root: __dirname });
+});
+
+server.get("/contact", (req, res) => {
+    res.sendFile("contact.html", { root: __dirname });
+});
+
+
 
 //Ping for server check - Start
 
