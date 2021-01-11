@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const { env } = require('process');
 const { URLSearchParams } = require('url');
 const server = express();
+const nodemailer = require("nodemailer");
 
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
@@ -54,12 +55,45 @@ server.get("/ping", (req, res) => {
 
 //functions for mailing new contact forms - Start
 
-var urlencodedParser = bodyParser.urlencoded({ extended: true })
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 server.post("/newContact", urlencodedParser, (req, res) => {
-    console.log(req.body);
-    res.sendStatus(200);
-})
+    const contactMail = JSON.parse(JSON.stringify(req.body)); //Parsing to itterable object
+    console.log(contactMail);
+    sendMail(contactMail);
+    console.log(contactMail.Tlf);
+});
+
+const personalEmail = process.env.PERSONAL_MAIL;
+const password = process.env.MAIL_PASSWORD;
+
+function sendMail(contactForm) {
+
+    var transporter = nodemailer.createTransport({
+        service: "hotmail",
+        auth: {
+            user: personalEmail,
+            pass: password
+        }
+    });
+
+    var mailOptions = {
+        from: '"New contact from CasaRol.site" <Alexander-Rol@hotmail.com>',
+        to: personalEmail,
+        subject: "New contact",
+        text: JSON.stringify(contactForm)
+    };
+
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            return console.log(error);
+        }
+
+        console.log("Message sent: " + info.response);
+
+    })
+
+}
 
 // functions for mailing new contact forms - End
 
