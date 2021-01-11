@@ -58,7 +58,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true })
 
 server.post("/newContact", urlencodedParser, (req, res) => {
     console.log(req.body);
-    res.sendStatus(200);
+    res.redirect("/contact");
 })
 
 // functions for mailing new contact forms - End
