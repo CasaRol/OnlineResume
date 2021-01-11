@@ -56,7 +56,7 @@ server.get("/ping", (req, res) => {
 
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 
-server.post("/newContact", (req, res) => {
+server.post("/newContact", urlencodedParser, (req, res) => {
     console.log(req.body);
     res.sendStatus(200);
 })
