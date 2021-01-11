@@ -94,7 +94,6 @@ function sendMail(contactForm) {
     })
 
 }
-
 // functions for mailing new contact forms - End
 
 //Login methods and calls - start ( source: https://www.youtube.com/watch?v=EzQuFxRlUos&ab_channel=KevinSimper)
