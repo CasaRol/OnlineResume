@@ -31,15 +31,15 @@ server.get("/contact", (req, res) => {
 });
 
 server.get("/login/index", (req, res) => {
-    res.sendFile("/login/index.html", {root: __dirname});
+    res.sendFile("/login/index.html", { root: __dirname });
 });
 
 server.get("/login/filesharing", (req, res) => {
-    res.sendFile("/login/filesharing.html", {root: __dirname});
+    res.sendFile("/login/filesharing.html", { root: __dirname });
 });
 
 server.get("/login/movieandseries", (req, res) => {
-    res.sendFile("/login/movieandseries.html", {root: __dirname});
+    res.sendFile("/login/movieandseries.html", { root: __dirname });
 });
 
 //Ping for server check - Start
@@ -51,6 +51,17 @@ server.get("/ping", (req, res) => {
 });
 
 //Ping for server check - End
+
+//functions for mailing new contact forms - Start
+
+var urlencodedParser = bodyParser.urlencoded({ extended: true })
+
+server.post("/newContact", (req, res) => {
+    console.log(req.body);
+    res.sendStatus(200);
+})
+
+// functions for mailing new contact forms - End
 
 //Login methods and calls - start ( source: https://www.youtube.com/watch?v=EzQuFxRlUos&ab_channel=KevinSimper)
 const client_id = process.env.GITHUB_CLIENT_ID;
