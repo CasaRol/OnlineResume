@@ -61,7 +61,7 @@ server.post("/newContact", urlencodedParser, (req, res) => {
     const contactMail = JSON.parse(JSON.stringify(req.body)); //Parsing to itterable object
     console.log(contactMail);
     sendMail(contactMail);
-    console.log(contactMail.Tlf);
+    res.redirect("/contact");
 });
 
 const personalEmail = process.env.PERSONAL_MAIL;
