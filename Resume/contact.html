@@ -13,6 +13,10 @@
             $("#navbar-placeholder").load("navbar.html");
             $("#footer-placeholder").load("footer.html");
         });
+
+        function alertMessage() {
+            alert("Thank you! Your message has now been sent to the developer. You'll head back soon!")
+        }
     </script>
 
 </head>
@@ -44,7 +48,7 @@
                 <label for="comment">Your message: <span style="color: red;">*</span></label></br>
                 <textarea id="textarea" rows="2" cols="25" name="Comment" form="contact-dev" placeholder="Enter your comment here"></textarea></br>
 
-                <input class="btnform" type="submit" value="Send">
+                <input class="btnform" type="submit" value="Send" onclick="alertMessage()">
             </form>
         </div>
 
