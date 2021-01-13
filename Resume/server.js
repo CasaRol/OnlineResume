@@ -18,16 +18,24 @@ server.options('*', cors());
 
 server.use(express.static(__dirname));
 
+var visitCounter = 0;
+
 //Return index file (HTML)
 server.get("/index", (req, res) => {
+    visitCounter++;
+    console.log("Visitation counter: " + visitCounter);
     res.sendFile("index.html", { root: __dirname });
 });
 
 server.get("/about", (req, res) => {
+    visitCounter++;
+    console.log("Visitation counter: " + visitCounter);
     res.sendFile("about.html", { root: __dirname });
 });
 
 server.get("/contact", (req, res) => {
+    visitCounter++
+    console.log("Visitation counter: " + visitCounter);
     res.sendFile("contact.html", { root: __dirname });
 });
 
@@ -44,9 +52,12 @@ server.get("/login/movieandseries", (req, res) => {
 });
 
 //Ping for server check - Start
+var pingCounter = 0;
 
 server.get("/ping", (req, res) => {
+    pingCounter++;
     console.log("ping caught");
+    console.log("ping count: " + pingCounter);
     res.sendStatus(200);
     res.end();
 });
@@ -55,45 +66,17 @@ server.get("/ping", (req, res) => {
 
 //functions for mailing new contact forms - Start
 
+var mailing = require("./ServerFiles/mailing"); //Import for using seperate file for method
+
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 server.post("/newContact", urlencodedParser, (req, res) => {
     const contactMail = JSON.parse(JSON.stringify(req.body)); //Parsing to itterable object
     console.log(contactMail);
-    sendMail(contactMail);
+    mailing.sendMail(contactMail);
     console.log(contactMail.Tlf);
 });
 
-const personalEmail = process.env.PERSONAL_MAIL;
-const password = process.env.MAIL_PASSWORD;
-
-function sendMail(contactForm) {
-
-    var transporter = nodemailer.createTransport({
-        service: "hotmail",
-        auth: {
-            user: personalEmail,
-            pass: password
-        }
-    });
-
-    var mailOptions = {
-        from: '"New contact from CasaRol.site" <Alexander-Rol@hotmail.com>',
-        to: personalEmail,
-        subject: "New contact",
-        text: JSON.stringify(contactForm)
-    };
-
-    transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-            return console.log(error);
-        }
-
-        console.log("Message sent: " + info.response);
-
-    })
-
-}
 // functions for mailing new contact forms - End
 
 //Login methods and calls - start ( source: https://www.youtube.com/watch?v=EzQuFxRlUos&ab_channel=KevinSimper)
