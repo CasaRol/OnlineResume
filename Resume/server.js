@@ -71,112 +71,113 @@ var mailing = require("./ServerFiles/mailing"); //Import for using seperate file
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 server.post("/newContact", urlencodedParser, (req, res) => {
-            const contactMail = JSON.parse(JSON.stringify(req.body)); //Parsing to itterable object
-            console.log(contactMail);
-            mailing.sendMail(contactMail);
-            console.log(contactMail.Tlf);
+    const contactMail = JSON.parse(JSON.stringify(req.body)); //Parsing to itterable object
+    console.log(contactMail);
+    mailing.sendMail(contactMail);
+    console.log(contactMail.Tlf);
+});
 
-            // functions for mailing new contact forms - End
+// functions for mailing new contact forms - End
 
-            //Login methods and calls - start ( source: https://www.youtube.com/watch?v=EzQuFxRlUos&ab_channel=KevinSimper)
-            const client_id = process.env.GITHUB_CLIENT_ID;
-            const client_secret = process.env.GITHUB_CLIENT_SECRET;
-            const cookie_secret = process.env.COOKIE_SECRET
+//Login methods and calls - start ( source: https://www.youtube.com/watch?v=EzQuFxRlUos&ab_channel=KevinSimper)
+const client_id = process.env.GITHUB_CLIENT_ID;
+const client_secret = process.env.GITHUB_CLIENT_SECRET;
+const cookie_secret = process.env.COOKIE_SECRET
 
-            server.use(
-                cookieSession({
-                    secret: cookie_secret
-                })
-            );
+server.use(
+    cookieSession({
+        secret: cookie_secret
+    })
+);
 
-            server.get("/login/github", (req, res) => {
-                const url = 'https://github.com/login/oauth/authorize?client_id=' + client_id + '&redirect_uri=http://casarol.site/login/github/callback';
-                res.redirect(url);
-            });
+server.get("/login/github", (req, res) => {
+    const url = 'https://github.com/login/oauth/authorize?client_id=' + client_id + '&redirect_uri=http://casarol.site/login/github/callback';
+    res.redirect(url);
+});
 
-            async function getAccessToken({ code, client_id, client_secret }) {
-                const request = await fetch('https://github.com/login/oauth/access_token', {
-                    method: 'POST',
-                    headers: {
-                        "content-type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        client_id,
-                        client_secret,
-                        code
-                    })
-                })
-                const text = await request.text();
-                const params = new URLSearchParams(text);
-                return params.get('access_token');
-            }
+async function getAccessToken({ code, client_id, client_secret }) {
+    const request = await fetch('https://github.com/login/oauth/access_token', {
+        method: 'POST',
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({
+            client_id,
+            client_secret,
+            code
+        })
+    })
+    const text = await request.text();
+    const params = new URLSearchParams(text);
+    return params.get('access_token');
+}
 
-            async function getGithubUser(access_token) {
-                const req = await fetch('https://api.github.com/user', {
-                    headers: {
-                        "Authorization": "token " + access_token
-                    }
-                })
-                return await req.json()
-            }
+async function getGithubUser(access_token) {
+    const req = await fetch('https://api.github.com/user', {
+        headers: {
+            "Authorization": "token " + access_token
+        }
+    })
+    return await req.json()
+}
 
-            server.get("/login/github/callback", async(req, res) => {
-                const code = req.query.code;
-                const access_token = await getAccessToken({ code, client_id, client_secret });
-                const user = await getGithubUser(access_token);
-                if (user) {
-                    req.session.access_token = access_token;
-                    req.session.githubId = user.id;
-                    res.redirect("/login/index");
-                } else {
-                    console.log("Error - Something went wrong in callback")
-                    req.send("Error happend")
-                }
-            });
+server.get("/login/github/callback", async(req, res) => {
+    const code = req.query.code;
+    const access_token = await getAccessToken({ code, client_id, client_secret });
+    const user = await getGithubUser(access_token);
+    if (user) {
+        req.session.access_token = access_token;
+        req.session.githubId = user.id;
+        res.redirect("/login/index");
+    } else {
+        console.log("Error - Something went wrong in callback")
+        req.send("Error happend")
+    }
+});
 
-            server.get("login/index.html", (req, res) => {
-                return res.redirect("/login/index");
-            });
+server.get("login/index.html", (req, res) => {
+    return res.redirect("/login/index");
+});
 
-            server.get("/login/index", async(req, res) => {
-                if (req.session && req.session.githubId === 32219634) {
-                    res.sendFile("login/index.html", { root: __dirname });
-                } else if (req.session.githubId == null) {
-                    res.redirect("github");
-                } else {
-                    res.sendFile("error_codes/restrictedAccess.html", { root: __dirname });
-                }
-            });
+server.get("/login/index", async(req, res) => {
+    if (req.session && req.session.githubId === 32219634) {
+        res.sendFile("login/index.html", { root: __dirname });
+    } else if (req.session.githubId == null) {
+        res.redirect("github");
+    } else {
+        res.sendFile("error_codes/restrictedAccess.html", { root: __dirname });
+    }
+});
 
-            server.get("/login/filesharing", async(req, res) => {
-                if (req.session && req.session.githubId === 32219634) {
-                    res.sendFile("login/filesharing.html", { root: __dirname });
-                } else if (req.session.githubId == null) {
-                    res.redirect("github");
-                } else {
-                    res.sendFile("error_codes/restrictedAccess.html", { root: __dirname });
-                }
-            });
+server.get("/login/filesharing", async(req, res) => {
+    if (req.session && req.session.githubId === 32219634) {
+        res.sendFile("login/filesharing.html", { root: __dirname });
+    } else if (req.session.githubId == null) {
+        res.redirect("github");
+    } else {
+        res.sendFile("error_codes/restrictedAccess.html", { root: __dirname });
+    }
+});
 
-            server.get("/login/moviesandseries", async(req, res) => {
-                if (req.session && req.session.githubId === 32219634) {
-                    res.sendFile("login/moviesandseries.html", { root: __dirname });
-                } else if (req.session.githubId == null) {
-                    res.redirect("github");
-                } else {
-                    res.sendFile("error_codes/restrictedAccess.html", { root: __dirname });
-                }
-            });
+server.get("/login/moviesandseries", async(req, res) => {
+    if (req.session && req.session.githubId === 32219634) {
+        res.sendFile("login/moviesandseries.html", { root: __dirname });
+    } else if (req.session.githubId == null) {
+        res.redirect("github");
+    } else {
+        res.sendFile("error_codes/restrictedAccess.html", { root: __dirname });
+    }
+});
 
-            server.get("/logout", (req, res) => {
-                if (req.session) {
-                    req.session == null;
-                    res.redirect("/");
-                }
-            })
+server.get("/logout", (req, res) => {
+    if (req.session) {
+        req.session == null;
+        res.redirect("/");
+    }
+})
 
-            //Login methods and calls - End
+//Login methods and calls - End
 
-            let port = 8080
-            server.listen(port);
-            console.log('server is listening on port ' + port);
+let port = 8080
+server.listen(port);
+console.log('server is listening on port ' + port);
