@@ -17,6 +17,14 @@
 
 <body>
 
-    <h1>Files</h1>
+    <div class="centering">
+        <h1>Please select a file for uploading</h1>
+        <form id="fileupload" method="POST" action="/addfile" enctype="multipart/form-data">
+            <label for="file">Click the button and pick a file for upload:</label>
+            <input type="file" id="file" name="newFile" required>
+            <button type="submit" onclick="alert('File is being uploaded, tankyou')">Upload file</button>
+
+        </form>
+    </div>
 
 </body>

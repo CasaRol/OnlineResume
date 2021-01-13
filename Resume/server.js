@@ -10,6 +10,7 @@ const { env } = require('process');
 const { URLSearchParams } = require('url');
 const server = express();
 const nodemailer = require("nodemailer");
+const multer = require("multer");
 
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
@@ -65,7 +66,6 @@ server.get("/ping", (req, res) => {
 //Ping for server check - End
 
 //functions for mailing new contact forms - Start
-
 var mailing = require("./ServerFiles/mailing"); //Import for using seperate file for method
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -76,10 +76,32 @@ server.post("/newContact", urlencodedParser, (req, res) => {
     mailing.sendMail(contactMail);
     console.log(contactMail.Tlf);
 });
-
 // functions for mailing new contact forms - End
 
-//Login methods and calls - start ( source: https://www.youtube.com/watch?v=EzQuFxRlUos&ab_channel=KevinSimper)
+//For uploading files to the server - Start
+var urlencodedParser = bodyParser.urlencoded({ extended: true })
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./uploadedFiles");
+    },
+    filename: (req, file, cb) => {
+        const { originalname } = file;
+        cb(null, originalname);
+    }
+})
+
+const upload = multer({ storage: storage });
+
+
+server.post("/addfile", upload.single('newFile'), urlencodedParser, (req, res) => {
+    res.redirect("/login/filesharing");
+});
+
+//For uploading files to the server - End
+
+
+//Login methods and calls - start (source: https://www.youtube.com/watch?v=EzQuFxRlUos&ab_channel=KevinSimper)
 const client_id = process.env.GITHUB_CLIENT_ID;
 const client_secret = process.env.GITHUB_CLIENT_SECRET;
 const cookie_secret = process.env.COOKIE_SECRET
