@@ -11,6 +11,61 @@
         $(function() {
             $("#lognavbar-placeholder").load("lognavbar.html");
         });
+
+        window.onload = () => {
+
+        }
+    </script>
+
+    <script>
+        window.onload = () => {
+
+            fetch('http://localhost:8080/viewfiles')
+                .then(Response => Response.json())
+                .then(json => convertToCards(json));
+
+            console.log("Hello?...")
+
+            function convertToCards(json) {
+                console.log("I'm here now")
+
+                let files = JSON.parse(json);
+                files.forEach(element => {
+                    createCard(element);
+                });
+            }
+
+            function createCard(obj) {
+                console.log("OBJ: " + obj)
+
+                //Creating template for each file
+                let card = docuemnt.createElement("div");
+                card.setAttribute("name", obj.title);
+                card.className = "card";
+                card.addEventListener("click", () => {
+                    //Download if clicked!
+                    //Should have a reference to path via obj.location (not yet implemented)
+                });
+
+
+                let container = document.createElement("div");
+                container.className = "container";
+
+                /*
+                let filetype = document.createElement("img");
+                filetype.setAttribute("name", obj.img);
+                container.appendChild(filetype)
+
+                */
+                let title = docuemnt.createElement("p");
+                title.textContent = obj.title;
+                container.appendChild(title);
+
+                card.appendChild(container);
+                document.getElementById("files").appendChild(card);
+            }
+
+        }
     </script>
 
 </head>
@@ -26,5 +81,7 @@
 
         </form>
     </div>
+
+    <div id="files" class="files"></div>
 
 </body>

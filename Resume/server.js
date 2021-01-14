@@ -78,6 +78,18 @@ server.post("/newContact", urlencodedParser, (req, res) => {
 });
 // functions for mailing new contact forms - End
 
+//For viewing uploaded files in the HTML - Start
+const readDirectory = require("./ServerFiles/readDirectory");
+
+server.get("/viewfiles", (req, res) => {
+    let result = readDirectory.readDir("./uploadedFiles/");
+    res.json(result);
+    res.sendStatus(200);
+});
+
+//For viewing uploaded files in the HTML - End
+
+
 //For uploading files to the server - Start
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 
@@ -97,6 +109,8 @@ const upload = multer({ storage: storage });
 server.post("/addfile", upload.single('newFile'), urlencodedParser, (req, res) => {
     res.redirect("/login/filesharing");
 });
+
+
 
 //For uploading files to the server - End
 
