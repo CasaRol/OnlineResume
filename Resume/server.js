@@ -81,10 +81,50 @@ server.post("/newContact", urlencodedParser, (req, res) => {
 //For viewing uploaded files in the HTML - Start
 const readDirectory = require("./ServerFiles/readDirectory");
 
-server.get("/viewfiles", (req, res) => {
-    let result = readDirectory.readDir("./uploadedFiles/");
-    res.json(result);
-    res.sendStatus(200);
+server.get("/viewfiles", async(req, res) => {
+    var myFiles = [];
+
+    fs.readdir(path.join(__dirname, "./uploadedFiles"), function(err, files) {
+        if (err) {
+            return console.log(err);
+        }
+        files.forEach(function(file) {
+            var myFile = {};
+
+            //setting type of file
+            let extension = file.substr((file.lastIndexOf('.') + 1));
+            switch (extension) {
+                case "pdf":
+                    myFile.type = "pdf";
+                    break;
+                case "docx":
+                    myFile.type = "docx";
+                    break;
+                case "png":
+                    myFile.type = "png";
+                    break;
+                case "avi":
+                    myFile.type = "avi";
+                    break;
+            }
+
+            //saving img location
+            myFile.imgLocation = path.join("assets/filetypes/" + myFile.type + ".png");
+
+            //setting title of file
+            myFile.title = file;
+
+            //setting path to file
+            myFile.location = path.join(__dirname, ("../uploadedFiles/" + file));
+
+            myFiles.push(myFile);
+        });
+
+
+        res.json(JSON.stringify(myFiles));
+        res.end;
+    });
+
 });
 
 //For viewing uploaded files in the HTML - End

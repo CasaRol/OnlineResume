@@ -4,7 +4,7 @@ const path = require("path")
 //const directoryPath = path.join(__dirname, "../uploadedFiles");
 var myFiles = [];
 
-function readDir(directoryPath) {
+async function readDir(directoryPath) {
 
     fs.readdir(directoryPath, function(err, files) {
         if (err) {
@@ -39,8 +39,11 @@ function readDir(directoryPath) {
             myFiles.push(myFile);
         });
 
-        console.log(myFiles); //Prints JSON fine
-        return JSON.stringify(myFiles); //Returning
+        //console.log(myFiles);
+
+        // var myreturn = JSON.stringify(myFiles);
+        //console.log("myreturn = " + myreturn)
+        return myFiles; //Returning
     });
 }
 

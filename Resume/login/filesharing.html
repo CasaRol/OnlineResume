@@ -36,10 +36,10 @@
             }
 
             function createCard(obj) {
-                console.log("OBJ: " + obj)
+                console.log("OBJ: " + JSON.stringify(obj))
 
                 //Creating template for each file
-                let card = docuemnt.createElement("div");
+                let card = document.createElement("div");
                 card.setAttribute("name", obj.title);
                 card.className = "card";
                 card.addEventListener("click", () => {
@@ -51,13 +51,15 @@
                 let container = document.createElement("div");
                 container.className = "container";
 
-                /*
+
                 let filetype = document.createElement("img");
                 filetype.setAttribute("name", obj.img);
+                console.log(obj.imgLocation);
+                filetype.setAttribute("src", obj.imgLocation);
                 container.appendChild(filetype)
 
-                */
-                let title = docuemnt.createElement("p");
+
+                let title = document.createElement("p");
                 title.textContent = obj.title;
                 container.appendChild(title);
 
