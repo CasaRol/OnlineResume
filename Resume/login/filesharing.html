@@ -24,10 +24,7 @@
                 .then(Response => Response.json())
                 .then(json => convertToCards(json));
 
-            console.log("Hello?...")
-
             function convertToCards(json) {
-                console.log("I'm here now")
 
                 let files = JSON.parse(json);
                 files.forEach(element => {
@@ -36,7 +33,6 @@
             }
 
             function createCard(obj) {
-                console.log("OBJ: " + JSON.stringify(obj))
 
                 let ancor = document.createElement("a");
                 ancor.setAttribute("href", obj.location);
@@ -56,7 +52,6 @@
 
                 let filetype = document.createElement("img");
                 filetype.setAttribute("name", obj.img);
-                console.log(obj.imgLocation);
                 filetype.setAttribute("src", obj.imgLocation);
                 imgContainer.appendChild(filetype);
 
