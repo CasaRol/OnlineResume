@@ -20,7 +20,7 @@
     <script>
         window.onload = () => {
 
-            fetch('http://localhost:8080/viewfiles')
+            fetch('http://casarol.site/viewfiles')
                 .then(Response => Response.json())
                 .then(json => convertToCards(json));
 
