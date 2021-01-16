@@ -115,7 +115,7 @@ server.get("/viewfiles", async(req, res) => {
             myFile.title = file;
 
             //setting path to file
-            myFile.location = path.join(__dirname, ("../uploadedFiles/" + file));
+            myFile.location = path.join("../uploadedFiles/" + file);
 
             myFiles.push(myFile);
         });

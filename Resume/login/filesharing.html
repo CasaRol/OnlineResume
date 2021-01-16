@@ -38,33 +38,39 @@
             function createCard(obj) {
                 console.log("OBJ: " + JSON.stringify(obj))
 
+                let ancor = document.createElement("a");
+                ancor.setAttribute("href", obj.location);
+                ancor.setAttribute('download', obj.title);
+
                 //Creating template for each file
                 let card = document.createElement("div");
+
                 card.setAttribute("name", obj.title);
                 card.className = "card";
-                card.addEventListener("click", () => {
-                    //Download if clicked!
-                    //Should have a reference to path via obj.location (not yet implemented)
-                });
-
 
                 let container = document.createElement("div");
                 container.className = "container";
 
+                let imgContainer = document.createElement("div");
+                imgContainer.className = "imgcon";
 
                 let filetype = document.createElement("img");
                 filetype.setAttribute("name", obj.img);
                 console.log(obj.imgLocation);
                 filetype.setAttribute("src", obj.imgLocation);
-                container.appendChild(filetype)
+                imgContainer.appendChild(filetype);
 
+                container.appendChild(imgContainer);
 
                 let title = document.createElement("p");
                 title.textContent = obj.title;
                 container.appendChild(title);
 
                 card.appendChild(container);
-                document.getElementById("files").appendChild(card);
+                ancor.appendChild(card)
+                document.getElementById("files").appendChild(ancor);
+
+
             }
 
         }
