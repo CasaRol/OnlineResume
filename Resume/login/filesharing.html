@@ -20,7 +20,7 @@
     <script>
         window.onload = () => {
 
-            fetch('http://casarol.site/viewfiles')
+            fetch('http://casarol.site/viewfiles?path=./uploadedFiles/')
                 .then(Response => Response.json())
                 .then(json => convertToCards(json));
 
@@ -35,7 +35,8 @@
             function createCard(obj) {
 
                 let ancor = document.createElement("a");
-                ancor.setAttribute("href", obj.location);
+                //"../" as obj.location refers directyly to the folder and not a step back as it should
+                ancor.setAttribute("href", ('../' + obj.location));
                 ancor.setAttribute('download', obj.title);
 
                 //Creating template for each file

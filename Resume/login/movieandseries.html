@@ -13,6 +13,15 @@
         });
     </script>
 
+    <script>
+        window.onliad = () => {
+
+            fetch('http://casarol.site/viewfiles?path=./movies/')
+                .then(Response => Response.json())
+                .then(json => convertToCards(json));
+        }
+    </script>
+
 </head>
 
 <body>

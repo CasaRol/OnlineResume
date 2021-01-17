@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./styles/styles.css">
+
+    <div id="lognavbar-placeholder"></div>
+
+    <script>
+        $(function() {
+            $("#lognavbar-placeholder").load("lognavbar.html");
+        });
+    </script>
+
+    <script>
+        window.onload = () => {
+
+
+            const urlParams = new URLSearchParams(window.location.search);
+
+            let video = document.createElement("video");
+            video.className = "video"
+            video.controls = true;
+
+            let videoSource = document.createElement("source");
+            videoSource.className = "videoSource"
+            video.appendChild(videoSource);
+            videoSource.src = '../movies/Ballerup ABA.mp4' //urlParams.get(path);
+
+
+            document.getElementById('videodiv').appendChild(video);
+
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="videodiv" style="text-align: center;"></div>
+</body>

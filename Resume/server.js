@@ -79,12 +79,11 @@ server.post("/newContact", urlencodedParser, (req, res) => {
 // functions for mailing new contact forms - End
 
 //For viewing uploaded files in the HTML - Start
-const readDirectory = require("./ServerFiles/readDirectory");
 
 server.get("/viewfiles", async(req, res) => {
     var myFiles = [];
 
-    fs.readdir(path.join(__dirname, "./uploadedFiles"), function(err, files) {
+    fs.readdir(path.join(__dirname, req.query.path), function(err, files) {
         if (err) {
             return console.log(err);
         }
@@ -106,6 +105,12 @@ server.get("/viewfiles", async(req, res) => {
                 case "avi":
                     myFile.type = "avi";
                     break;
+                case "mp4":
+                    myFile.type = "mp4";
+                    break;
+                default:
+                    myFile.type = "default";
+                    break;
             }
 
             //saving img location
@@ -115,7 +120,7 @@ server.get("/viewfiles", async(req, res) => {
             myFile.title = file;
 
             //setting path to file
-            myFile.location = path.join("../uploadedFiles/" + file);
+            myFile.location = path.join(req.query.path + file);
 
             myFiles.push(myFile);
         });
